@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  validator_node:
+    container_name: findora_node
+    image: findoranetwork/findorad:${LIVE_VERSION}
+    volumes:
+      - ./tendermint:/root/.tendermint
+      - ./findorad:/tmp/findora
+    ports:
+      - 8669:8669
+      - 8668:8668
+      - 8667:8667
+      - 8545:8545
+      - 26657:26657
+    environment:
+      - EVM_CHAIN_ID=2152
+    command:
+      - node
+      - --ledger-dir
+      - /tmp/findora
+      - --tendermint-host
+      - 0.0.0.0
+      - --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json"
+      - --enable-query-service
+      - --enable-eth-api-service
