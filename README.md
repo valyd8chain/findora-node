@@ -14,3 +14,8 @@ Findora Node
 ### Download Chain Data
 1) `./download_chain.sh`
     - This will take awhile
+
+### Generate Staking Key
+1) `./generate_staking_key.sh`
+2) WRITE DOWN YOUR MNEMONIC ON A PIECE OF PAPER AND KEEP IT SOMEWHERE SAFE. To view it, run `cat keys/node.mnemonic`
+
