@@ -1,7 +1,6 @@
 # findora-node
 Findora Node
 
-
 ## Setup
 
 ### Set Environment Variables
@@ -11,3 +10,7 @@ Findora Node
 ### Tendermint Setup
 1) `mkdir tendermint`
 2) `docker run --rm -v $(pwd)/tendermint:/root/.tendermint findoranetwork/findorad:${LIVE_VERSION} init --mainnet`
+
+### Download Chain Data
+1) `./download_chain.sh`
+    - This will take awhile
