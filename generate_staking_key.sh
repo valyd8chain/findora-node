@@ -3,7 +3,7 @@
 mkdir keys
 
 # Generate Keypair
-docker run -it -v $(pwd)/keys:/home/nonroot/keys valyd8chain/findora-cli fn genkey > keys/tmp.gen.keypair
+docker run  --rm -it -v $(pwd)/keys:/home/nonroot/keys valyd8chain/findora-cli fn genkey > keys/tmp.gen.keypair
 
 # Backup key
 cp ./keys/tmp.gen.keypair ./keys/mainnet_node.key
