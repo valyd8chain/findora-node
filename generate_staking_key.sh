@@ -1,12 +1,13 @@
 #!/bin/bash
+set -e
 
 mkdir keys
 
 # Generate Keypair
-docker run  --rm -it -v $(pwd)/keys:/home/nonroot/keys valyd8chain/findora-cli fn genkey > keys/tmp.gen.keypair
+fn genkey > keys/tmp.gen.keypair
 
 # Backup key
 cp ./keys/tmp.gen.keypair ./keys/mainnet_node.key
 
 # Backup Mnemonic
-echo $(sed -n 's/Mnemonic:\s*//p' ./keys/tmp.gen.keypair) > ./keys/node.mnemonic
+#TODO echo $(sed -n 's/Mnemonic:\s*//p' ./keys/tmp.gen.keypair) > ./keys/node.mnemonic

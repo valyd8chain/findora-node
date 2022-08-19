@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 wget -O "$(pwd)/snapshot" "${CHAINDATA_URL}"
 mkdir ./snapshot_data
 tar zxvf ./snapshot -C ./snapshot_data
