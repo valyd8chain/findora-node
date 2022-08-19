@@ -7,9 +7,13 @@ Findora Node
 1) `cp .env_example .env` and adjust any values as needed.
 2) `source setenv.sh`
 
+#### Install the Findora CLI (fn)
+1) `./install_fn_cli.sh`
+
 #### Tendermint Setup
 1) `mkdir tendermint`
 2) `docker run --rm -v $(pwd)/tendermint:/root/.tendermint findoranetwork/findorad:${LIVE_VERSION} init --mainnet`
+3) `` sudo chown -R `id -u`:`id -g` tendermint/ ``
 
 #### Download Chain Data
 1) `./download_chain.sh`
@@ -19,5 +23,18 @@ Findora Node
 1) `./generate_staking_key.sh`
 2) WRITE DOWN YOUR MNEMONIC ON A PIECE OF PAPER AND KEEP IT SOMEWHERE SAFE. To view it, run `cat keys/node.mnemonic`
 
-### Start Your Node
+## Start Your Node
 `docker-compose up -d`
+
+## Checking Your Node
+View Logs: `docker logs -f findora_node`
+
+Check Status:
+```
+curl 'http://localhost:26657/status'
+curl 'http://localhost:8669/version'
+curl 'http://localhost:8668/version' # Only if you set the 'ENABLE_LEDGER_SERVICE'
+curl 'http://localhost:8667/version' # Only if you set the 'ENABLE_QUERY_SERVICE'
+```
+Check Signing:
+`fn show`
