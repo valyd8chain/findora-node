@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -ex
-ENV=prod
-NAMESPACE=mainnet
-LIVE_VERSION=$(curl -s https://${ENV}-${NAMESPACE}.${ENV}.findora.org:8668/version | awk -F\  '{print $2}')
-
-export ROOT_DIR=/data/findora/${NAMESPACE}
+source setenv.sh
 
 # remove the exist addrbook file
 rm -rf $(pwd)/tendermint/config/addrbook.json
