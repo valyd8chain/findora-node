@@ -10,4 +10,4 @@ fn genkey > keys/tmp.gen.keypair
 cp ./keys/tmp.gen.keypair ./keys/mainnet_node.key
 
 # Backup Mnemonic
-#TODO echo $(sed -n 's/Mnemonic:\s*//p' ./keys/tmp.gen.keypair) > ./keys/node.mnemonic
+echo $(cat ./keys/mainnet_node.key | grep 'Mnemonic' | sed 's/^.*Mnemonic:[^ ]* //') > ./keys/node.mnemonic
