@@ -3,13 +3,12 @@ set -ex
 source setenv.sh
 
 # remove the exist addrbook file
-rm -rf $(pwd)/tendermint/config/addrbook.json
+rm -rf ./tendermint/config/addrbook.json
 ###################
 # Run local node #
 ###################
-docker stop findora_node || exit 1
-docker rm findora_node || exit 1
-rm -rf $(pwd)/tendermint/config/addrbook.json
+docker-compose down || exit 1
+rm -rf ./tendermint/config/addrbook.json
 docker-compose up -d
 
 sleep 10
