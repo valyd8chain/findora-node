@@ -2,7 +2,7 @@ version: '3'
 
 services:
   validator_node:
-    container_name: findora_node
+    container_name: findorad
     image: findoranetwork/findorad:${LIVE_VERSION}
     volumes:
       - ./tendermint:/root/.tendermint
@@ -15,6 +15,7 @@ services:
       - 26657:26657
     environment:
       - EVM_CHAIN_ID=2152
+    restart: always
     command:
       - node
       - --ledger-dir
