@@ -5,3 +5,5 @@ findorad
 /tendermint
 /keys
 fn
+staker_memo
+staker_memo.json
