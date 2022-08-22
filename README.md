@@ -5,7 +5,7 @@ Findora Node
 This repo was created with the following goals in mind:
 1) Use `docker-compose` rather than a messy `docker` command to start the node.
 2) Simpify the Findora node manual setup process and its overreliance on shell vairables.
-3) Avoid the Findora setup requirement of installing the `fn` CLI on the host OS as an executable and use a containizered version of `fn` instead. We have dockerized the CLI [here]() and recommend using that image for running `fn` commands.
+3) Avoid the Findora setup requirement of installing the `fn` CLI on the host OS as an executable and use a containizered version of `fn` instead. We have dockerized the CLI [here](https://github.com/valyd8chain/findora-cli-docker-image) and recommend using that image for running `fn` commands.
 4) No automated script can `sudo`. These steps have been moved out of scripts in the setup instructions below.
 
 We hope to integrate some of these improvements with the official Findora team as time goes on.
