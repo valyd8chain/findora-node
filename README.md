@@ -1,18 +1,20 @@
 # findora-node
 Findora Node
 
+## Goals
+This repo was created with the following goals in mind:
+1) Use `docker-compose` rather than a messy `docker` command to start the node.
+2) Simpify the Findora node manual setup process and its overreliance on shell vairables.
+3) Avoid the Findora setup requirement of installing the `fn` CLI on the host OS as an executable and use a containizered version of `fn` instead. We have dockerized the CLI [here]() and recommend using that image for running `fn` commands.
+4) No automated script can `sudo`. These steps have been moved out of scripts in the setup instructions below.
+
+We hope to integrate some of these improvements with the official Findora team as time goes on.
+
 ## Setup
 
 #### Set Environment Variables:
 1) `cp .env_example .env` and adjust any values as needed.
 2) `source setenv.sh`
-
-#### Install the Findora CLI (fn):
-1) `curl -LO https://wiki.findora.org/bin/linux/fn && chmod +x fn`
-2) `./fn setup -S https://prod-${NAMESPACE}.prod.findora.org`
-3) `mkdir keys`
-4) `./fn setup -O keys/node.mnemonic`
-5) `./fn setup -K keys/priv_validator_key.json`
 
 #### Tendermint Setup:
 1) `mkdir tendermint`
@@ -22,8 +24,9 @@ Findora Node
 #### Download Chain Data:
 1) `./download_chain.sh`
     - This will take awhile
+2) `` sudo chown -R `id -u`:`id -g` findorad/ ``
 
-#### Generate Staking Key:
+#### Generate Staking Wallet Key:
 1) `./generate_staking_key.sh`
 2) WRITE DOWN YOUR MNEMONIC ON A PIECE OF PAPER AND KEEP IT SOMEWHERE SAFE. To view it, run `cat keys/node.mnemonic`
 
@@ -41,4 +44,13 @@ curl 'http://localhost:8668/version' # Only if you set the 'ENABLE_LEDGER_SERVIC
 curl 'http://localhost:8667/version' # Only if you set the 'ENABLE_QUERY_SERVICE'
 ```
 Check Signing:
-`fn show`
+```
+docker run --rm -v $(pwd)/keys/node.mnemonic:/home/nonroot/keys/node.mnemonic -v $(pwd)/tendermint/config/priv_validator_key.json:/home/nonroot/keys/priv_validator_key.json -it valyd8chain/findora-cli fn show
+```
+
+## Node Maintenance
+We've provided modified versions of the Findora update and clean scripts that are `docker-compose` friendly.
+- Update/Restart Node: `./update_node.sh`.
+- Safety Clean Node: `./safety_clean`
+    - Note: Make sure you have stopped your container with `docker-compose down` before running
+
