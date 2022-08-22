@@ -7,6 +7,7 @@ rm -rf ./tendermint/config/addrbook.json
 ###################
 # Run local node #
 ###################
+docker-compose pull || exit 1
 docker-compose down || exit 1
 rm -rf ./tendermint/config/addrbook.json
 docker-compose up -d
