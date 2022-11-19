@@ -37,7 +37,7 @@ We hope to integrate some of these improvements with the official Findora team a
 `docker-compose up -d`
 
 ## Checking Your Node
-View Logs: `docker logs -f findora_node`
+View Logs: `docker logs -f findorad`
 
 Check Status:
 ```
